@@ -1,7 +1,8 @@
 # docker-php
 
 这是一个用于运行php的容器.
-容器中包含superviosr,php,php-fpm
+容器基于ubuntu创建,包含superviosr,php,php-fpm软件
+
 
 ## Run It
 
