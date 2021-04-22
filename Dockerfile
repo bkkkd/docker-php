@@ -27,11 +27,13 @@ RUN sed -i '/server_tokens off;/aclient_max_body_size 500m;\n' /etc/nginx/nginx.
     sed -i '/upload_max_filesize/cupload_max_filesize=512M' /etc/php/7.4/cli/php.ini &&\
     sed -i '/post_max_size/cpost_max_size=512M' /etc/php/7.4/cli/php.ini
 ADD supervisord-phpfpm.conf /etc/supervisor/conf.d/supervisord-phpfpm.conf
+ADD nginx-default /etc/nginx/sites-available/default
+ADD index.php /app/index.php
+RUN chmod 766 -R /app && chown www-data:www-data -R /app
 
+WORKDIR /app
 
-WORKDIR /root/
-
-VOLUME ["/var/www/html", "/etc/supervisord/conf.d", "/etc/nginx/sites-enabled/"]
+VOLUME ["/app", "/etc/supervisord/conf.d", "/etc/nginx/sites-enabled/"]
 
 EXPOSE 80
 
