@@ -16,13 +16,7 @@ RUN dpkg --add-architecture i386 && \
     php composer-setup.php && \
     php -r "unlink('composer-setup.php');" && \
     mv composer.phar /usr/local/bin/composer && \
-    curl -sSL https://packages.microsoft.com/config/ubuntu/20.04/prod.list | tee /etc/apt/sources.list.d/microsoft-prod.list &&\
-    curl -sSL https://packages.microsoft.com/keys/microsoft.asc |  apt-key add - &&\
     apt-get update && \
-    ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools unixodbc-dev &&\
-    pecl install sqlsrv && \
-    pecl install pdo_sqlsrv && \
-    echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
     apt-get -y full-upgrade && apt-get clean && rm -rf /var/lib/apt/lists/* &&\
     sed -i '/server_tokens off;/aclient_max_body_size 500m;\n' /etc/nginx/nginx.conf && \
     sed -i '/keepalive_timeout/ckeepalive_timeout 600;' /etc/nginx/nginx.conf &&\
@@ -36,9 +30,6 @@ RUN dpkg --add-architecture i386 && \
     sed -i '/memory_limit/cmemory_limit=512M' /etc/php/5.6/cli/php.ini &&\
     sed -i '/upload_max_filesize/cupload_max_filesize=512M' /etc/php/5.6/cli/php.ini &&\
     sed -i '/post_max_size/cpost_max_size=512M' /etc/php/5.6/cli/php.ini &&\
-    echo "extension=pdo_sqlsrv.so" >/etc/php/5.6/mods-available/pdo_sqlsrv.ini && \
-    /usr/bin/ln -sf /etc/php/5.6/mods-available/pdo_sqlsrv.ini /etc/php/5.6/fpm/conf.d/20-pdo_sqlsrv.ini && \
-    /usr/bin/ln -sf /etc/php/5.6/mods-available/pdo_sqlsrv.ini /etc/php/5.6/cli/conf.d/20-pdo_sqlsrv.ini && \
     mkdir -p /app/public && \
     echo "<?php phpinfo();" >/app/public/index.php && \
     chown www-data:www-data -R /app 
