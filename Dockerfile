@@ -10,7 +10,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get install -y software-properties-common libzbar-dev zbar-tools imagemagick &&\
     add-apt-repository -y ppa:ondrej/php &&\
-    apt-get -y install wget tar supervisor net-tools php8.1-bcmath php8.1-bz2 php8.1-cli php8.1-common php8.1-curl php8.1-fpm php8.1-gd php8.1-mbstring php8.1-mysql  php8.1-sqlite3 php8.1-zip php8.1-xml php8.1-opcache php8.1-dev php8.1-imagick php8.1-swoole php8.1-redis nginx vim gnupg2 curl git cron p7zip-full zip&& \
+    apt-get -y install wget tar supervisor net-tools php8.1-bcmath php8.1-bz2 php8.1-cli php8.1-common php8.1-curl php8.1-fpm php8.1-gd php8.1-mbstring php8.1-mysql  php8.1-sqlite3 php8.1-zip php8.1-xml php8.1-opcache php8.1-dev php8.1-imagick php8.1-swoole php8.1-redis nginx vim gnupg2 curl git cron p7zip-full zip nmap&& \
     /usr/bin/ln -sf /usr/sbin/php-fpm8.1 /usr/sbin/php-fpm  && \
     php -r "copy('https://install.phpcomposer.com/installer', 'composer-setup.php');" && \
     php composer-setup.php && \
