@@ -19,7 +19,10 @@ RUN dpkg --add-architecture i386 && \
     curl -sSL https://packages.microsoft.com/config/ubuntu/20.04/prod.list | tee /etc/apt/sources.list.d/microsoft-prod.list &&\
     curl -sSL https://packages.microsoft.com/keys/microsoft.asc |  apt-key add - &&\
     apt-get update && \
-    ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools unixodbc-dev &&\
+    ACCEPT_EULA=Y apt-get install -y msodbcsql18 mssql-tools && \
+    /usr/bin/echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc &&\
+    /usr/bin/source ~/.bashrc && \
+    apt-get install -y unixodbc-dev &&\
     pecl install sqlsrv && \
     pecl install pdo_sqlsrv && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
