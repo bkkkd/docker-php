@@ -21,7 +21,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get update && \
     ACCEPT_EULA=Y apt-get install -y msodbcsql18 mssql-tools && \
     /usr/bin/echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc &&\
-    /usr/bin/source ~/.bashrc && \
+    source ~/.bashrc && \
     apt-get install -y unixodbc-dev &&\
     pecl install sqlsrv && \
     pecl install pdo_sqlsrv && \
