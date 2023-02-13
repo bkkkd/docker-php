@@ -20,12 +20,10 @@ RUN dpkg --add-architecture i386 && \
     curl -sSL https://packages.microsoft.com/keys/microsoft.asc |  apt-key add - &&\
     apt-get update && \
     ACCEPT_EULA=Y apt-get install -y msodbcsql18 mssql-tools && \
-    /usr/bin/echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc &&\
-    source ~/.bashrc && \
+    export PATH="$PATH:/opt/mssql-tools18/bin" &&\
     apt-get install -y unixodbc-dev &&\
     pecl install sqlsrv && \
     pecl install pdo_sqlsrv && \
-    echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
     apt-get -y full-upgrade && apt-get clean && rm -rf /var/lib/apt/lists/* &&\
     sed -i '/server_tokens off;/aclient_max_body_size 500m;\n' /etc/nginx/nginx.conf && \
     sed -i '/keepalive_timeout/ckeepalive_timeout 600;' /etc/nginx/nginx.conf &&\
