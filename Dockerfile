@@ -22,7 +22,7 @@ RUN dpkg --add-architecture i386 && \
     ACCEPT_EULA=Y apt-get install -y msodbcsql17 mssql-tools && \
     echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc && \
     export PATH="$PATH:/opt/mssql-tools/bin" && \
-    apt-get install -y unixodbc-dev && \
+    apt-get install -y unixodbc-dev=2.3.7   unixodbc=2.3.7 odbcinst1debian2=2.3.7 odbcinst=2.3.7&& \
     pecl install sqlsrv && \
     pecl install pdo_sqlsrv && \
     apt-get -y full-upgrade && apt-get clean && rm -rf /var/lib/apt/lists/* &&\
